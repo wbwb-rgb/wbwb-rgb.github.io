@@ -69,6 +69,66 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-第二周2" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2025/01/21/%E7%AC%AC%E4%BA%8C%E5%91%A82/" class="article-date">
+  <time class="dt-published" datetime="2025-01-21T02:41:25.000Z" itemprop="datePublished">2025-01-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2025/01/21/%E7%AC%AC%E4%BA%8C%E5%91%A82/">第二周2</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>   题目 ： [SWPUCTF 2022 新生赛]webdog1__start</p>
+<ol>
+<li><p>打开环境  就有几个英文字母<br>看一下源代码 发现有php代码</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">  !--</span><br><span class="line"><span class="keyword">if</span> (isset(<span class="variable">$_GET</span>[<span class="string">&#x27;web&#x27;</span>]))</span><br><span class="line">&#123;</span><br><span class="line">    <span class="variable">$first</span>=<span class="variable">$_GET</span>[<span class="string">&#x27;web&#x27;</span>];</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable">$first</span>==md5(<span class="variable">$first</span>)) </span><br><span class="line">     &#125;</span><br><span class="line">--&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>简单的进行绕过web&#x3D;0e215962017  发现页面更新 但没有重要内容<br>依旧看一下源代码 发现路径 &#x2F;start.php</p>
+</li>
+<li><p>进去看一下  ：</p>
+
+<p>也是没啥有用的信息<br>依旧看一下源代码<br>有个重要信息“Next”do you know the power of bot? go go go”<br>“你知道机器人的力量吗”  由此联系到robots.txt</p>
+</li>
+<li><p>进入robots.txt看一下<br>发现f14g.php  文件  进去看一下  好吧  还是啥也没有<br>但是我们打开网络  看一下f14g.php的消息头<br>发现了F1l1l1l1l1lag.php 文件  我们进去看看</p>
+</li>
+<li><p>终于看见源代码了</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">error_reporting(0);</span><br><span class="line">highlight_file(__FILE__);</span><br><span class="line"><span class="keyword">if</span> (isset(<span class="variable">$_GET</span>[<span class="string">&#x27;get&#x27;</span>]))&#123;</span><br><span class="line">    <span class="variable">$get</span>=<span class="variable">$_GET</span>[<span class="string">&#x27;get&#x27;</span>];</span><br><span class="line">    <span class="keyword">if</span>(!strstr(<span class="variable">$get</span>,<span class="string">&quot; &quot;</span>))&#123;</span><br><span class="line">        <span class="variable">$get</span> = str_ireplace(<span class="string">&quot;flag&quot;</span>, <span class="string">&quot; &quot;</span>, <span class="variable">$get</span>);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> (strlen(<span class="variable">$get</span>)&gt;18)&#123;</span><br><span class="line">            die(<span class="string">&quot;This is too long.&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="built_in">eval</span>(<span class="variable">$get</span>);</span><br><span class="line">          &#125; </span><br><span class="line">    &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">        die(<span class="string">&quot;nonono&quot;</span>); </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">?&gt; </span><br></pre></td></tr></table></figure>
+<p>简单的代码审计一下</p>
+</li>
+<li><p>就是过滤了空格和flag  并且长度要&lt;&#x3D;18<br>payload： get&#x3D;system(“cat%09&#x2F;*”);<br>得出flag</p>
+</li>
+<li><p>总结： 这题目的找文件过程曲折和复杂<br>要看好源代码的内容 认真读源代码 内容<br>对于文件的消息头要认真看</p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2025/01/21/%E7%AC%AC%E4%BA%8C%E5%91%A82/" data-id="cm65whr7k0000z0ui6yb9btm5" data-title="第二周2" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-第二周1" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2025/01/21/%E7%AC%AC%E4%BA%8C%E5%91%A81/" class="article-date">
@@ -500,45 +560,6 @@ echo '~'.urlencode(~'0');
 
 
   
-    <article id="post-kkk" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2025/01/12/kkk/" class="article-date">
-  <time class="dt-published" datetime="2025-01-12T06:36:59.000Z" itemprop="datePublished">2025-01-12</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2025/01/12/kkk/">kkk</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p><img src="/www/R-C.jpg"><br>我看看怎么个事</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2025/01/12/kkk/" data-id="cm5ulxzzk00046gui5s123s0i" data-title="kkk" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
 
 
   <nav id="page-nav">
@@ -575,6 +596,10 @@ echo '~'.urlencode(~'0');
       <ul>
         
           <li>
+            <a href="/2025/01/21/%E7%AC%AC%E4%BA%8C%E5%91%A82/">第二周2</a>
+          </li>
+        
+          <li>
             <a href="/2025/01/21/%E7%AC%AC%E4%BA%8C%E5%91%A81/">第二周1</a>
           </li>
         
@@ -588,10 +613,6 @@ echo '~'.urlencode(~'0');
         
           <li>
             <a href="/2025/01/13/%E7%AC%AC%E4%B8%80%E5%91%A81/">第一周1</a>
-          </li>
-        
-          <li>
-            <a href="/2025/01/12/sx/">sx</a>
           </li>
         
       </ul>
