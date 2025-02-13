@@ -69,6 +69,61 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-第一周3" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2025/01/13/%E7%AC%AC%E4%B8%80%E5%91%A83/" class="article-date">
+  <time class="dt-published" datetime="2025-01-13T03:48:17.000Z" itemprop="datePublished">2025-01-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2025/01/13/%E7%AC%AC%E4%B8%80%E5%91%A83/">第一周3</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>题解 ：[SWPUCTF 2022 新生赛]ez_ez_php(revenge)</p>
+<ol>
+<li><p>打开网址发现是php代码 如下：<br>“&lt;?php<br> error_reporting(0);<br> if (isset($_GET[‘file’])) {<br> if ( substr($_GET[“file”], 0, 3) &#x3D;&#x3D;&#x3D; “php” ) {<br> echo “Nice!!!”;<br> include($_GET[“file”]);<br> } </p>
+<p> else {<br> echo “Hacker!!”;<br> }</p>
+</li>
+</ol>
+<p> }else {<br>    highlight_file(<strong>FILE</strong>);<br> }<br> &#x2F;&#x2F;flag.php”</p>
+<ol start="2">
+<li><p>我们代码审计一下看看  ：<br>用get方式提交参数file<br>file参数前三个为php </p>
+</li>
+<li><p>让我们想到了文件包含 ：<br>file&#x3D;php:&#x2F;&#x2F;filter&#x2F;convert.base64-encode&#x2F;resource&#x3D;flag.php<br>出现base64文字  我们去翻译一下<br><a target="_blank" rel="noopener" href="https://i-blog.csdnimg.cn/blog_migrate/58547239b48814c750c10917fa50806f.png">https://i-blog.csdnimg.cn/blog_migrate/58547239b48814c750c10917fa50806f.png</a></p>
+</li>
+<li><p>这个提示我们flag可能在&#x2F;flag中  我们继续php伪协议<br>file&#x3D;php:&#x2F;&#x2F;filter&#x2F;read&#x3D;convert.base64-encode&#x2F;resource&#x3D;&#x2F;flag<br>发现结果仍为base64文字  去翻译<br>求出flag</p>
+</li>
+<li><p>总结：<br>关于php伪协议的利用<br>php代码认识<br>base64要了解</p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2025/01/13/%E7%AC%AC%E4%B8%80%E5%91%A83/" data-id="cm5ulxzzq000d6guier5333sh" data-title="第一周3" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-第一周2" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2025/01/13/%E7%AC%AC%E4%B8%80%E5%91%A82/" class="article-date">
@@ -471,45 +526,6 @@ echo '~'.urlencode(~'0');
 
 
   
-    <article id="post-bzd" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2025/01/11/bzd/" class="article-date">
-  <time class="dt-published" datetime="2025-01-11T02:12:53.000Z" itemprop="datePublished">2025-01-11</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2025/01/11/bzd/">bzd</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p><img src="https://github.com/wbwb-rgb/wbwb-rgb.github.io/blob/main/R-C.jpg?raw=true"></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2025/01/11/bzd/" data-id="cm5ulxzze00006guifms4hh2l" data-title="bzd" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
 
 
   <nav id="page-nav">
@@ -546,6 +562,10 @@ echo '~'.urlencode(~'0');
       <ul>
         
           <li>
+            <a href="/2025/02/13/%E7%AC%AC%E4%BA%94%E5%91%A81/">第五周1</a>
+          </li>
+        
+          <li>
             <a href="/2025/02/03/%E7%AC%AC%E5%9B%9B%E5%91%A83/">第四周3</a>
           </li>
         
@@ -559,10 +579,6 @@ echo '~'.urlencode(~'0');
         
           <li>
             <a href="/2025/01/29/%E7%AC%AC%E4%B8%89%E5%91%A83/">第三周3</a>
-          </li>
-        
-          <li>
-            <a href="/2025/01/29/%E7%AC%AC%E4%B8%89%E5%91%A82/">第三周2</a>
           </li>
         
       </ul>
