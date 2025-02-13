@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>第五周2 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="SSTI:  php漏洞：  Twig引擎引擎介绍Twig是一个流行的PHP模板引擎，其语法清晰简洁，易于学习和使用，Twig语法特征如下： “插值：Twig中使用来表示插值，用于输出变量或表达式的值控制结构：Twig支持常见的控制结构过滤器：Twig允许使用过滤器对变量进行处理简易示例下面是一个Twig引擎的简易示例，我们首先引入Twig的自动加载文件，然后创建了一个模板环境(Environme">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第五周2">
+<meta property="og:url" content="http://example.com/2025/02/13/%E7%AC%AC%E4%BA%94%E5%91%A82/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="SSTI:  php漏洞：  Twig引擎引擎介绍Twig是一个流行的PHP模板引擎，其语法清晰简洁，易于学习和使用，Twig语法特征如下： “插值：Twig中使用来表示插值，用于输出变量或表达式的值控制结构：Twig支持常见的控制结构过滤器：Twig允许使用过滤器对变量进行处理简易示例下面是一个Twig引擎的简易示例，我们首先引入Twig的自动加载文件，然后创建了一个模板环境(Environme">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-02-13T11:40:54.000Z">
+<meta property="article:modified_time" content="2025-02-13T11:58:37.539Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-第五周2" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2025/02/13/%E7%AC%AC%E4%BA%94%E5%91%A82/" class="article-date">
+  <time class="dt-published" datetime="2025-02-13T11:40:54.000Z" itemprop="datePublished">2025-02-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      第五周2
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>SSTI:<br>  php漏洞：<br>  Twig引擎<br>引擎介绍<br>Twig是一个流行的PHP模板引擎，其语法清晰简洁，易于学习和使用，Twig语法特征如下：</p>
+<p>“插值：Twig中使用来表示插值，用于输出变量或表达式的值<br>控制结构：Twig支持常见的控制结构<br>过滤器：Twig允许使用过滤器对变量进行处理<br>简易示例<br>下面是一个Twig引擎的简易示例，我们首先引入Twig的自动加载文件，然后创建了一个模板环境(Environment)，并通过该环境加载了名为index.html的模板文件并向该模板文件传递了一个名为name的变量”<br>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">require_once <span class="string">&#x27;vendor/autoload.php&#x27;</span>; // 引入 Twig 的自动加载文件</span><br><span class="line">use Twig\Environment;</span><br><span class="line">use Twig\Loader\FilesystemLoader;</span><br><span class="line"></span><br><span class="line">// 指定模板文件夹</span><br><span class="line"><span class="variable">$loader</span> = new FilesystemLoader(<span class="string">&#x27;path/to/templates&#x27;</span>);</span><br><span class="line"></span><br><span class="line">// 创建 Twig 环境</span><br><span class="line"><span class="variable">$twig</span> = new Environment <span class="variable">$loader</span>;</span><br><span class="line"></span><br><span class="line">// 渲染模板</span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$twig</span>-&gt;render(<span class="string">&#x27;index.html&#x27;</span>, <span class="string">&#x27;name&#x27;</span> =&gt; <span class="string">&#x27;John Doe&#x27;</span>]); // 将 name 变量传递给模板</span><br><span class="line"></span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure><br>Smarty引擎<br>引擎介绍<br>Smarty是一个流行的PHP模板引擎，它提供了灵活且易于使用的语法，特点主要有以下几个：</p>
+<p>“插值：Smarty中使用{xxx}来表示插值，用于输出变量的值，<br>控制结构：Smarty支持常见的控制结构<br>变量修饰器：Smarty允许使用变量修饰器对变量进行处理<br>注释：Smarty使用 { xxx } 来添加注释，这样可以在模板中添加注释信息而不会影响渲染结果<br>简易示例<br>下面是一个简易的Smarty引擎使用示例，我们首先引入了Smarty的文件，然后创建了一个Smarty对象，接着通过assign方法将name变量传递给模板，最后使用display方法渲染并显示名为index.tpl的模板”</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">require(<span class="string">&#x27;libs/Smarty.class.php&#x27;</span>); // 引入Smarty的文件</span><br><span class="line"></span><br><span class="line"><span class="variable">$smarty</span> = new Smarty(); // 创建Smarty对象</span><br><span class="line"></span><br><span class="line">// 传递变量给模板</span><br><span class="line"><span class="variable">$smarty</span>-&gt;assign(<span class="string">&#x27;name&#x27;</span>, <span class="string">&#x27;John Doe&#x27;</span>);</span><br><span class="line"></span><br><span class="line">// 渲染模板</span><br><span class="line"><span class="variable">$smarty</span>-&gt;display(<span class="string">&#x27;index.tpl&#x27;</span>); // 显示名为 index.tpl 的模板</span><br><span class="line">?&gt;</span><br><span class="line">Blade引擎</span><br><span class="line">基本介绍</span><br><span class="line">Blade是Laravel框架中使用的一个流行的模板引擎，它提供了简洁而强大的语法，以下是关于Blade引擎的语法特点</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;插值：Blade中使用双花括号&#123;&#123; &#125;&#125;来表示插值，用于输出变量的值，例如：</span></span><br><span class="line"><span class="string">Hello, &#123;&#123; <span class="variable">$name</span> !&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>“控制结构：Blade支持常见的控制结构，例如：if-else、for循环等，if-else结构用@if(condition) … @else … @endif表示，而for循环用@foreach($array as $item) … @endforeach表示<br>条件判断：Blade提供了方便的条件判断语法，例如：@unless(condition) … @endunless表示除非条件为假时执行<br>注释：使用来添加注释，这样可以在模板中添加注释信息而不会影响渲染结果<br>继承与包含：Blade支持模板的继承和包含，通过@extends(‘layout’)来指定父模板，然后使用@section和@yield或@include来定义和引入子模板的内容<br>简易示例”</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- layout.blade.php --&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;<span class="built_in">head</span>&gt;</span><br><span class="line">    &lt;title&gt;@yield(<span class="string">&#x27;title&#x27;</span>)&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    @section(<span class="string">&#x27;content&#x27;</span>)</span><br><span class="line">    &lt;p&gt;Default content&lt;/p&gt;</span><br><span class="line">    @show</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br><span class="line">&lt;!-- page.blade.php --&gt;</span><br><span class="line">@extends(<span class="string">&#x27;layout&#x27;</span>)</span><br><span class="line"></span><br><span class="line">@section(<span class="string">&#x27;title&#x27;</span>, <span class="string">&#x27;Page Title&#x27;</span>)</span><br><span class="line"></span><br><span class="line">@section(<span class="string">&#x27;content&#x27;</span>)</span><br><span class="line">    &lt;p&gt;Page content&lt;/p&gt;</span><br><span class="line">@endsection</span><br></pre></td></tr></table></figure>
+<p>在上述简易示例中我们创建了两个模板文件，首先layout.blade.php定义了一个基本布局，其中使用@yield来定义一个占位符，该占位符可以被子模板填充，在page.blade.php中通过@extends指定了父模板并使用@section和@endsection定义了一个名为’content’的区块并填充了具体的内容</p>
+<p>patTemplate<br>基本介绍<br>patTemplate是一个基于PHP的模板引擎，它提供了简单而直观的语法，以下是关于patTemplate引擎的语法特点以及一个简易的使用示例：</p>
+<p>插值：patTemplate中使用占位符$var的表示插值，用于输出变量的值，例如：<br>Hello, $name!</p>
+<p>条件判断：patTemplate支持条件判断结构，使用 … 来表示，可以根据条件来控制是否输出某个区块<br>循环：patTemplate通过 … 语法实现循环结构，可以遍历数组并重复输出相应区块<br>过器：patTemplate允许使用过滤器对变量进行处理，例如：$var|lowercase表示将变量转换为小写形式<br>注释：使用来添加注释，这样可以在模板中添加注释信息而不会影响渲染结果<br>简易示例<br>下面是parTemplate的一个简易使用示例，在上述示例中我们首先引入了patTemplate的文件，然后创建了一个patTemplate对象。接着使用setBasedir方法设置模板所在的目录，然后使用addVar方法添加变量到模板，例如:将 name变量设置为’John Doe’，最后使用display方法显示名为index.tpl的模板</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">require_once(<span class="string">&#x27;pat/patTemplate.php&#x27;</span>); // 引入 patTemplate 的文件</span><br><span class="line"></span><br><span class="line">// 创建 patTemplate 对象</span><br><span class="line"><span class="variable">$template</span> = new patTemplate();</span><br><span class="line"><span class="variable">$template</span>-&gt;setBasedir(<span class="string">&#x27;path/to/templates&#x27;</span>); // 设置模板所在目录</span><br><span class="line"></span><br><span class="line">// 添加变量到模板</span><br><span class="line"><span class="variable">$template</span>-&gt;addVar(<span class="string">&#x27;name&#x27;</span>, <span class="string">&#x27;John Doe&#x27;</span>);</span><br><span class="line"></span><br><span class="line">// 显示模板</span><br><span class="line"><span class="variable">$template</span>-&gt;display(<span class="string">&#x27;index.tpl&#x27;</span>); // 显示名为 index.tpl 的模板</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2025/02/13/%E7%AC%AC%E4%BA%94%E5%91%A82/" data-id="cm739v9ib0000s4uia7zd7201" data-title="第五周2" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2025/02/13/%E7%AC%AC%E4%BA%94%E5%91%A81/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">第五周1</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/02/">February 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/01/">January 2025</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/02/13/%E7%AC%AC%E4%BA%94%E5%91%A82/">第五周2</a>
+          </li>
+        
+          <li>
+            <a href="/2025/02/13/%E7%AC%AC%E4%BA%94%E5%91%A81/">第五周1</a>
+          </li>
+        
+          <li>
+            <a href="/2025/02/03/%E7%AC%AC%E5%9B%9B%E5%91%A83/">第四周3</a>
+          </li>
+        
+          <li>
+            <a href="/2025/02/03/%E7%AC%AC%E5%9B%9B%E5%91%A82/">第四周2</a>
+          </li>
+        
+          <li>
+            <a href="/2025/02/03/%E7%AC%AC%E5%9B%9B%E5%91%A81/">第四周1</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2025 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
